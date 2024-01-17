@@ -11,10 +11,15 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4.1.1
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+    - id: setup-java
+      name: Set up JDK
+      uses: actions/setup-java@v4.0.0
       with:
-        node-version: '14'
-
+        distribution: temurin
+        java-version: 17
+        cache: maven
+        # server-id: sonatype-nexus
+        # server-username: MAVEN_USERNAME
+        # server-password: MAVEN_PASSWORD
