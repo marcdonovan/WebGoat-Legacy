@@ -1,7 +1,7 @@
-- name: Setup Maven Action
+name: Setup Maven Action
   # You may pin to the exact commit or the version.
   # uses: s4u/setup-maven-action@fa2c7e4517ed008b1f73e7e0195a9eecf5582cd4
-  uses: s4u/setup-maven-action@v1.11.0
+uses: s4u/setup-maven-action@v1.11.0
   with:
     # Number of commits to fetch
     checkout-fetch-depth: # optional
