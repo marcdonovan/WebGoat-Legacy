@@ -1,0 +1,40 @@
+            - name: Setup Maven Action
+  # You may pin to the exact commit or the version.
+  # uses: s4u/setup-maven-action@fa2c7e4517ed008b1f73e7e0195a9eecf5582cd4
+  uses: s4u/setup-maven-action@v1.11.0
+  with:
+    # Number of commits to fetch
+    checkout-fetch-depth: # optional
+    # Relative path under $GITHUB_WORKSPACE to place the repository
+    checkout-path: # optional
+    # Whether to configure the token or SSH key with the local git config
+    checkout-persist-credentials: # optional, default is false
+    # The branch, tag, or SHA of the repository to clone
+    checkout-ref: # optional
+    # The repository to checkout if not the repository that triggered the action. For use when building GitHub Apps
+    checkout-repository: # optional, default is ${{ github.repository }}
+    # Token to use for checkout if checking out a repository out of scope for GITHUB_TOKEN
+    checkout-token: # optional, default is ${{ github.token }}
+    # The Java version to set up
+    java-version: # default is 17
+    # Java distribution
+    java-distribution: # optional, default is temurin
+    # Enable cache
+    cache-enabled: # optional, default is true
+    # Cache key prefix
+    cache-prefix: # optional
+    # Cache path
+    cache-path: # optional, default is ~/.m2/repository
+    # Additional item for cache path
+    cache-path-add: # optional
+    # The Maven version to set up
+    maven-version: # optional, default is 3.9.5
+    # servers definition in json array, eg: [{"id": "serverId", "username": "username", "password": "password"}]
+    settings-servers: # optional
+    # mirrors definition in json array, eg: [{"id": "id", "name": "name", "mirrorOf": "mirrorOf", "url": "url"}]
+    settings-mirrors: # optional
+    # json array with properties, eg [{"propertyName1": "propertyValue1"}, {"propertyName2": "propertyValue2"}]
+    settings-properties: # optional
+    # add https://oss.sonatype.org/content/repositories/snapshots to repository list - true or false
+    settings-sonatypeSnapshots: # optional
+          
