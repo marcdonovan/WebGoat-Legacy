@@ -24,6 +24,9 @@ jobs:
         # server-username: MAVEN_USERNAME
         # server-password: MAVEN_PASSWORD
 
+    - name: wget
+      run: wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0-rc4/pmd-dist-7.0.0-rc4-bin.zip
+
   
 
 # wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0-rc4/pmd-dist-7.0.0-rc4-bin.zip
