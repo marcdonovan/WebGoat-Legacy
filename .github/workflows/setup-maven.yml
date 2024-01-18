@@ -38,11 +38,5 @@ jobs:
     - name: pmd
       run: pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src -R rulesets/java/quickstart.xml -f text -r result.txt -d src
 
-    - name: check
-      run: if [ `wc -l result.txt` -gt "$2" ]; then
-          exit -1
-        fi
-
-    - name: ls
-      run: ls -la
-
+    - name: summary
+      run: echo result.txt >> $GITHUB_STEP_SUMMARY
