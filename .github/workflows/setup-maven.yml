@@ -20,9 +20,6 @@ jobs:
         distribution: temurin
         java-version: 17
         cache: maven
-        # server-id: sonatype-nexus
-        # server-username: MAVEN_USERNAME
-        # server-password: MAVEN_PASSWORD
 
     - name: wget
       run: wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0-rc4/pmd-dist-7.0.0-rc4-bin.zip
@@ -31,7 +28,7 @@ jobs:
       run: unzip pmd-dist-7.0.0-rc4-bin.zip
 
     - name: pmd
-      run: pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src -R rulesets/java/quickstart.xml -f text
+      run: pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src -R rulesets/java/quickstart.xml -f text -r result.txt
 
     - name: ls
       run: ls -la
