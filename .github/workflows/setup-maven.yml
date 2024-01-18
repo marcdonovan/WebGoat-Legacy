@@ -46,7 +46,7 @@ jobs:
 
         - name: fail job
           run: |
-            if [ `wc -l results.txt` -ge "10" ]
+            if [ `wc -l result.txt` -ge "10" ]
             then
               exit -1
             fi
