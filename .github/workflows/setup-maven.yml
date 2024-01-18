@@ -36,11 +36,17 @@ jobs:
           run: unzip pmd-dist-7.0.0-rc4-bin.zip
 
         - name: pmd
-          run: pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src -R rulesets/java/quickstart.xml -f text -r result.txt -d src
-#    upload:
-#      steps:
-        - name: Archive code coverage results
-          uses: actions/upload-artifact@v3
+          run: pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src -R rulesets/java/quickstart.xml -f text -r result.txt -d src --no-fail-on-violation
+
+        - name: upload results
+          uses: actions/upload-artifact@v4
           with:
             name: results
             path: results.txt
+
+        - name: fail job
+          run: |
+            if [ `wc -l results.txt` -ge "10" ]
+            then
+              exit -1
+            fi
