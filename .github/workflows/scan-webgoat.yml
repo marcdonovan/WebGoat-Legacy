@@ -20,7 +20,7 @@ jobs:
 
       steps:
         - name: scan-webgoat
-          uses: actions/scan-pmd@v1
+          uses: ./.github/workflows/scan-pmd.yml
 
         - name: upload results
           uses: actions/upload-artifact@v4
