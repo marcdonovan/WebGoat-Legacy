@@ -1,56 +1,15 @@
-name: pmd
-
-#on:
-#  push:
-#    branches:
-#      - '*'
-#
+name: scan-webgoat
 
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'dummy'
-        required: true
-        default: 'dummy'
+  push:
+    branches:
+      - '*'
 
 jobs:
     scan:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4.1.1
+        - name: Run PMD
+          uses: actions/pmd
 
-        - id: setup-java
-          name: Set up JDK
-          uses: actions/setup-java@v4.0.0
-          with:
-            distribution: temurin
-            java-version: 17
-            cache: maven
-
-        - name: wget
-          run: wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0-rc4/pmd-dist-7.0.0-rc4-bin.zip
-
-        - name: unzip
-          run: unzip pmd-dist-7.0.0-rc4-bin.zip
-
-        - name: pmd
-          run: |
-            pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src \
-            -R rulesets/java/quickstart.xml -f xml -r results.xml \
-            -d src --no-fail-on-violation
-
-        - name: upload results
-          uses: actions/upload-artifact@v4
-          with:
-            name: results
-            path: results.xml
-
-#        - name: fail job
-#          run: |
-#            if [[ $(wc -l <results.xml) -ge 10 ]]
-#            then
-#              exit -1
-#            fi
