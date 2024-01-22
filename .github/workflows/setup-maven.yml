@@ -1,17 +1,17 @@
 name: setup-maven
 
-on:
-  push:
-    branches:
-      - '*'
-
 #on:
-#  workflow_dispatch:
-#    inputs:
-#      environment:
-#        description: 'Define env name'
-#        required: true
-#        default: 'prod'
+#  push:
+#    branches:
+#      - '*'
+#
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Define env name'
+        required: true
+        default: 'prod'
 
 jobs:
     scan:
@@ -36,17 +36,20 @@ jobs:
           run: unzip pmd-dist-7.0.0-rc4-bin.zip
 
         - name: pmd
-          run: pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src -R rulesets/java/quickstart.xml -f text -r result.txt -d src --no-fail-on-violation
+          run: |
+            pmd-bin-7.0.0-rc4/bin/pmd check -d /usr/src \
+            -R rulesets/java/quickstart.xml -f xml -r serif.xml \
+            -d src --no-fail-on-violation
 
         - name: upload results
           uses: actions/upload-artifact@v4
           with:
             name: results
-            path: result.txt
+            path: serif.xml
 
         - name: fail job
           run: |
-            if [[ $(wc -l <result.txt) -ge 10 ]]
+            if [[ $(wc -l <serif.xml) -ge 10 ]]
             then
               exit -1
             fi
